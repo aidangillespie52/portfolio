@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>aidan@portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css"/>
+</head>
+<body>
+  <div class="workspace">
+
+    <div class="terminal-pane">
+      <section class="terminal" aria-label="SSH portfolio terminal">
+        <div class="terminal__chrome" aria-hidden="true">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--yellow"></span>
+          <span class="dot dot--green"></span>
+          <span class="terminal__title">ssh — aidan@portfolio.dev</span>
+        </div>
+
+        <div class="terminal__screen" role="region" aria-live="polite" id="screen">
+          <div class="line reveal d-0"><span class="muted">$</span>&nbsp;ssh aidan@portfolio.dev</div>
+          <div class="line reveal d-03">Connecting to portfolio.dev…</div>
+          <div class="line reveal d-07">Welcome to Ubuntu 22.04 LTS <span class="muted">(GNU/Linux 6.2.0 x86_64)</span></div>
+          <div class="line reveal d-10">Last login: Fri Feb 27 11:03 CST from 192.168.1.42</div>
+          <div class="spacer reveal d-12"></div>
+          <div class="line reveal d-13"><span class="prompt">aidan@portfolio:~$</span><span class="type d-155 n-15"> ./portfolio.exe</span></div>
+          <div class="spacer reveal d-21"></div>
+          <div class="line reveal d-22"><span class="badge">portfolio.exe</span>&nbsp;v1.0.0</div>
+          <div class="line reveal d-245"><span class="muted">[INFO]</span>&nbsp;Initializing runtime…</div>
+          <div class="line reveal d-270"><span class="muted">[INFO]</span>&nbsp;Loading project registry…</div>
+          <div class="line reveal d-295"><span class="muted">[INFO]</span>&nbsp;Mounting data sources…</div>
+          <div class="line reveal d-320"><span class="muted">[INFO]</span>&nbsp;Starting interactive session…</div>
+          <div class="spacer reveal d-345"></div>
+          <div class="line reveal ok d-355">✔ Loaded 7 projects</div>
+          <div class="line reveal ok d-375">✔ Resume cache ready</div>
+          <div class="line reveal ok d-395">✔ Models initialized</div>
+          <div class="spacer reveal d-410"></div>
+          <div class="line reveal d-420">Type <span class="kbd">help</span> to get started.</div>
+          <div class="line reveal d-440" id="input-line">
+            <span class="appPrompt">portfolio&gt;</span>&nbsp;<span class="input-text" id="input-text"></span><span class="cursor" aria-hidden="true" id="cursor"></span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="pdf-pane" id="pdf-pane">
+      <div class="pdf-chrome">
+        <span class="pdf-chrome__title" id="pdf-title">document.pdf</span>
+        <div class="pdf-chrome__actions">
+          <button class="pdf-btn">⬇ download</button>
+          <button class="pdf-btn close-btn" onclick="document.querySelector('.workspace').classList.remove('split')">✕ close</button>
+        </div>
+      </div>
+      <div class="pdf-viewer" id="pdf-viewer">
+        <div class="pdf-loading">
+          <div class="pdf-loading__spinner"></div>
+          <span>rendering document…</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/static/js/terminal.js"></script>
+</body>
+</html>
