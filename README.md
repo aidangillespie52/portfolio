@@ -10,7 +10,7 @@ $ ssh aidan@portfolio.dev
 
 ## Features
 
-- **Terminal emulator** — `ls`, `cd`, `pwd`, `view`, `clear`, `exit` and more
+- **Terminal emulator** — `ls`, `cd`, `pwd`, `view`, `clear` and more
 - **Tab completion** — commands and filenames, loaded dynamically from the backend
 - **Project registry** — file-based, each project is a `content.json` with metadata and a GitHub URL
 - **Split-pane README viewer** — `view <project>` fetches and renders the project's GitHub README live
