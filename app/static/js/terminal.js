@@ -41,8 +41,81 @@
           files: children.filter(c => typeof c === 'object').map(c => c.name),
         };
       }
+      await loadBootInfo(data);
     } catch (e) {
       console.warn('Could not load filesystem:', e);
+    }
+  }
+
+  async function loadBootInfo(fs) {
+    try {
+      const projectCount = (fs['~/projects'] || []).filter(c => typeof c === 'object').length;
+
+      const repoRes = await fetch('https://api.github.com/repos/aidangillespie52/portfolio');
+      let fmt = null;
+      if (repoRes.ok) {
+        const repo = await repoRes.json();
+        const d    = new Date(repo.pushed_at);
+        fmt = d.getUTCFullYear()                            + '-' +
+              String(d.getUTCMonth() + 1).padStart(2, '0') + '-' +
+              String(d.getUTCDate()).padStart(2, '0')       + ' ' +
+              String(d.getUTCHours()).padStart(2, '0')      + ':' +
+              String(d.getUTCMinutes()).padStart(2, '0')    + ':' +
+              String(d.getUTCSeconds()).padStart(2, '0')    + ' UTC';
+      }
+
+      // wait for last info line (d-345 = 3.45s)
+      const elapsed = performance.now();
+      const wait    = Math.max(0, 3450 - elapsed);
+
+      setTimeout(() => {
+        const container = document.getElementById('boot-results');
+
+        if (fmt) {
+          const updated = document.createElement('div');
+          updated.className = 'line muted';
+          updated.innerHTML = `[INFO]&nbsp;Last push ${fmt}`;
+          container.appendChild(updated);
+        }
+
+        const loaded = document.createElement('div');
+        loaded.className = 'line ok';
+        loaded.innerHTML = `✔ ${projectCount} project${projectCount !== 1 ? 's' : ''} loaded`;
+        container.appendChild(loaded);
+
+        // spacer
+        const spacer = document.createElement('div');
+        spacer.className = 'spacer';
+        container.appendChild(spacer);
+
+        // "Type help" line
+        const helpLine = document.createElement('div');
+        helpLine.className = 'line';
+        helpLine.innerHTML = `Type <span class="kbd">help</span> to get started.`;
+        container.appendChild(helpLine);
+
+        // spacer
+        const spacer2 = document.createElement('div');
+        spacer2.className = 'spacer';
+        container.appendChild(spacer2);
+
+        // mark initialized
+        const square   = document.querySelector('.boot-square');
+        const bootText = document.getElementById('boot-status-text');
+        if (square)   square.classList.add('boot-square--ready');
+        if (bootText) {
+          bootText.textContent = 'initialized';
+          bootText.classList.remove('muted');
+          bootText.classList.add('ok');
+        }
+
+        // activate input
+        inputLine.classList.add('ready');
+
+      }, wait);
+
+    } catch (e) {
+      console.warn('Could not load boot info:', e);
     }
   }
 
@@ -141,7 +214,7 @@
     const title  = document.getElementById('pdf-title');
     const viewer = document.getElementById('pdf-viewer');
 
-    title.innerHTML = `${projectName} / README.md`;
+    title.innerHTML  = `${projectName} / README.md`;
     viewer.innerHTML = `
       <div class="pdf-loading">
         <div class="pdf-loading__spinner"></div>
@@ -246,10 +319,9 @@
   // ── Boot then activate ───────────────────────────────────────
   updatePrompt();
 
-  setTimeout(async () => {
-    await Promise.all([loadCommands(), loadFsTree()]);
-    inputLine.classList.add('ready');
+  Promise.all([loadCommands(), loadFsTree()]);
 
+  setTimeout(() => {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Tab') {
         e.preventDefault();

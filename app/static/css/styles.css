@@ -511,3 +511,38 @@ body {
   opacity: 1;
   text-decoration: underline;
 }
+
+.boot-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--accent);
+  border-top-color: transparent;
+  border-radius: 2px;
+  animation: spin-square .6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes spin-square {
+  to { transform: rotate(360deg); }
+}
+
+.boot-square {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--muted);
+  border-top-color: transparent;
+  border-radius: 2px;
+  animation: spin-square .6s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+  transition: background .3s ease, border .3s ease;
+}
+
+.boot-square--ready {
+  background: var(--accent);
+  border-color: var(--accent);
+  animation: none;
+}

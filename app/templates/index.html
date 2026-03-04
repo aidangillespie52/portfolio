@@ -22,27 +22,27 @@
         </div>
 
         <div class="terminal__screen" role="region" aria-live="polite" id="screen">
-          <div class="line reveal d-0"><span class="muted">$</span>&nbsp;ssh aidan@portfolio.dev</div>
-          <div class="line reveal d-03">Connecting to portfolio.dev…</div>
-          <div class="line reveal d-07">Welcome to Ubuntu 22.04 LTS <span class="muted">(GNU/Linux 6.2.0 x86_64)</span></div>
-          <div class="line reveal d-10">Last login: Fri Feb 27 11:03 CST from 192.168.1.42</div>
-          <div class="spacer reveal d-12"></div>
-          <div class="line reveal d-13"><span class="prompt">aidan@portfolio:~$</span><span class="type d-155 n-15"> ./portfolio.exe</span></div>
-          <div class="spacer reveal d-21"></div>
-          <div class="line reveal d-22"><span class="badge">portfolio.exe</span>&nbsp;v1.0.0</div>
-          <div class="line reveal d-245"><span class="muted">[INFO]</span>&nbsp;Initializing runtime…</div>
-          <div class="line reveal d-270"><span class="muted">[INFO]</span>&nbsp;Loading project registry…</div>
-          <div class="line reveal d-295"><span class="muted">[INFO]</span>&nbsp;Mounting data sources…</div>
-          <div class="line reveal d-320"><span class="muted">[INFO]</span>&nbsp;Starting interactive session…</div>
-          <div class="spacer reveal d-345"></div>
-          <div class="line reveal ok d-355">✔ Loaded 7 projects</div>
-          <div class="line reveal ok d-375">✔ Resume cache ready</div>
-          <div class="line reveal ok d-395">✔ Models initialized</div>
-          <div class="spacer reveal d-410"></div>
-          <div class="line reveal d-420">Type <span class="kbd">help</span> to get started.</div>
-          <div class="line reveal d-440" id="input-line">
-            <span class="appPrompt">portfolio&gt;</span>&nbsp;<span class="input-text" id="input-text"></span><span class="cursor" aria-hidden="true" id="cursor"></span>
+
+          <div class="line" id="boot-status">
+            <span class="boot-square"></span><span class="muted" id="boot-status-text">initializing…</span>
           </div>
+
+          <div class="line reveal d-03"><span class="muted">[INFO]</span>&nbsp;BOOTING portfolio.exe v1.0.0</div>
+          <div class="line reveal d-07"><span class="muted">[INFO]</span>&nbsp;MOUNTING STATIC FILESYSTEM...</div>
+          <div class="line reveal d-13"><span class="muted">[INFO]</span>&nbsp;LOADING PROJECT REGISTRY...</div>
+          <div class="line reveal d-22"><span class="muted">[INFO]</span>&nbsp;ESTABLISHING SESSION CONTEXT...</div>
+          <div class="line reveal d-270"><span class="muted">[INFO]</span>&nbsp;FETCHING REMOTE METADATA...</div>
+          <div class="line reveal d-295"><span class="muted">[INFO]</span>&nbsp;RESOLVING INDEX...</div>
+          <div class="line reveal d-320"><span class="muted">[INFO]</span>&nbsp;HYDRATING DATA SOURCES...</div>
+          <div class="line reveal d-345"><span class="muted">[INFO]</span>&nbsp;STARTING INTERACTIVE SESSION...</div>
+          <div class="spacer reveal d-355"></div>
+          <div id="boot-results"></div>
+          <div class="spacer reveal d-410"></div>
+          <div class="spacer reveal d-440"></div>
+          <div class="line reveal d-440" id="input-line">
+            <span class="appPrompt">portfolio:~$</span>&nbsp;<span class="input-text" id="input-text"></span><span class="cursor" aria-hidden="true" id="cursor"></span>
+          </div>
+
         </div>
       </section>
     </div>
