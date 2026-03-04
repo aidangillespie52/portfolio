@@ -8,8 +8,6 @@ PROJECTS_DIR  = STATIC_DIR / "projects"
 log = setup_logger(__name__)
 
 def build_filesystem() -> dict:
-    log.debug("Building in-memory filesystem from static/projects...")
-
     fs = {
         "~": ["projects"],
         "~/projects": [],
@@ -20,16 +18,11 @@ def build_filesystem() -> dict:
             continue
 
         name = project_dir.name
-        fs["~/projects"].append(name)
-        fs[f"~/projects/{name}"] = []
-
-        for file in sorted(project_dir.iterdir()):
-            if file.is_file() and file.name != "content.json":
-                fs[f"~/projects/{name}"].append({
-                    "name": file.name,
-                    "type": "file",
-                    "url": f"/static/projects/{name}/{file.name}",
-                })
+        fs["~/projects"].append({
+            "name": f"{name}.proj",
+            "type": "file",
+            "url":  None,
+        })
 
     return fs
 

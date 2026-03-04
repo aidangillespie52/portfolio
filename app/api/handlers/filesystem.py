@@ -56,14 +56,13 @@ def handle_view(cwd: str, args: list[str]) -> tuple[list[TerminalLine], str | No
     if not args:
         return [ERR("view: missing filename — usage: view <file>")], None, None
 
-    filename = args[0]
+    filename     = args[0]
+    project_name = None
 
     if cwd == "~/projects":
-        project_name = filename
+        project_name = filename.removesuffix(".proj")
     elif cwd.startswith("~/projects/"):
-        project_name = cwd.split("/")[2]
-    else:
-        project_name = None
+        project_name = cwd.split("/")[2].removesuffix(".proj")
 
     if project_name and project_name in PROJECT_INFO:
         return [OK(f"Opening {project_name}…")], None, project_name
