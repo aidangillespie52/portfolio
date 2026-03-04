@@ -1,0 +1,6 @@
+{
+  "title": "Terminal Portfolio",
+  "status": "Active",
+  "description": "Browser-based terminal emulator portfolio built with FastAPI and vanilla JS",
+  "github_url": "https://github.com/aidangillespie52/portfolio"
+}
